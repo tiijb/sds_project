@@ -2,6 +2,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import requests
+import datetime as dt
 
 #Access and load the züri wie neu data via API
 
@@ -38,3 +39,8 @@ if response_income.status_code == 200:
 else:
     print("Data income loading failed")
 
+## filter income for the newest year
+print(zurich_income_df.shape)
+current_year = int(dt.date.today().year)
+zurich_income_df = zurich_income_df[zurich_income_df["StichtagDatJahr"] == str(current_year -3)]
+print(zurich_income_df.shape)
