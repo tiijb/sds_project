@@ -1,0 +1,86 @@
+## This File contains all the functions for importing and cleaning the data of the züri wie neu project
+
+import requests
+import geopandas as gpd
+import pandas as pd
+
+
+### import data
+
+## import züri wie neu data
+
+def import_zwn_data():
+    """imports the züri wie neu data as a geodataframe from the website of the city zurich"""
+    url_zwn = "https://www.ogd.stadt-zrich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
+    try:
+        zwn_gdf = gpd.read_file(url_zwn).set_crs(epsg="4326").to_crs(epsg="2056")
+        print("Data züri wie neu loaded sugessfull")
+        return zwn_gdf
+    except:
+        print( "Züri wie neu data loading failed, check the url")
+
+
+
+
+## import neighbourhood data
+
+def import_neighbourhood_data ():
+    """imports the neighbourhood data as a geodataframe from the city of zürich"""
+    url_neighbourhoods = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_v"
+    try:
+        neighbourhood_gdf = gpd.read_file(url_neighbourhoods).set_crs(epsg="4326").to_crs(epsg="2056")
+        print("Data züri wie neu loaded sugessfull")
+        return neighbourhood_gdf
+    except:
+        print( "neighbourhood data loading failed, check the url")
+
+
+
+def import_gastronomy_data ():
+    """imports the neighbourhood data as a geodataframe from the city of zürich"""
+    url_gastronomy = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gastwirtschaftsbetriebe?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=gastwirtschaftsbetriebe"
+    try:
+        gastronomy_gdf = gpd.read_file(response_gastronomy.url).set_crs(epsg="4326").to_crs(epsg="2056")
+        print("gastronomy data loaded sugessfull")
+        return gastronomy_gdf
+    except:
+        print("gastronomy data loading failed")
+
+
+
+## 
+
+def import_population_data():
+    """imports the population data as a dataframe from the city of zürich"""
+    url_population = 'https://data.stadt-zuerich.ch/api/3/action/datastore_search'
+    parameter_population = {"resource_id":"9f9e2f24-96a7-4542-843c-52d44a904110", "limit":10000}
+    response_population = requests.get(url_population, params=parameter_population)
+    if response_population.status_code == 200:
+        print("Data Population loaded sugessfull")
+
+        #convert the json response into a dictionary (because the CKAN API returns a new dictionary where the data is in result and record)
+        population_dic = response_population.json()["result"]["records"]
+        #convert the dictionary into a dataframe
+        population_df = pd.DataFrame(population_dic)
+        return population_df
+    else:
+        print("Data population loading failed")
+
+
+
+def import_income_data():
+    """imports the income data as a dataframe from the city of zürich"""
+    
+    url_income = 'https://data.stadt-zuerich.ch/api/3/action/datastore_search'
+    parameter_income = {"resource_id":"af01ed91-04f8-445b-8dfc-04cbf0a27e95", "limit":3000}
+    response_income = requests.get(url_income, params=parameter_income)
+    if response_income.status_code == 200:
+        print("Data Income loaded sugessfull")
+
+        #convert the json response into a dictionary (because the CKAN API returns a new dictionary where the data is in result and record)
+        income_dic = response_income.json()["result"]["records"]
+        #convert the dictionary into a dataframe
+        income_df = pd.DataFrame(income_dic)
+        return income_df
+    else:
+        print("Data income loading failed")
