@@ -11,7 +11,7 @@ import pandas as pd
 
 def import_zwn_data():
     """imports the züri wie neu data as a geodataframe from the website of the city zurich"""
-    url_zwn = "https://www.ogd.stadt-zrich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
+    url_zwn = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
     try:
         zwn_gdf = gpd.read_file(url_zwn).set_crs(epsg="4326").to_crs(epsg="2056")
         print("Data züri wie neu loaded sugessfull")
@@ -36,11 +36,13 @@ def import_neighbourhood_data ():
 
 
 
+## import the gastronomy data
+
 def import_gastronomy_data ():
     """imports the neighbourhood data as a geodataframe from the city of zürich"""
     url_gastronomy = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gastwirtschaftsbetriebe?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=gastwirtschaftsbetriebe"
     try:
-        gastronomy_gdf = gpd.read_file(response_gastronomy.url).set_crs(epsg="4326").to_crs(epsg="2056")
+        gastronomy_gdf = gpd.read_file(url_gastronomy).set_crs(epsg="4326").to_crs(epsg="2056")
         print("gastronomy data loaded sugessfull")
         return gastronomy_gdf
     except:
