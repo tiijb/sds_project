@@ -29,10 +29,23 @@ def import_neighbourhood_data ():
     url_neighbourhoods = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_v"
     try:
         neighbourhood_gdf = gpd.read_file(url_neighbourhoods).set_crs(epsg="4326").to_crs(epsg="2056")
-        print("Data züri wie neu loaded sugessfull")
+        print("neighbourhood data loaded sugessfull")
         return neighbourhood_gdf
     except:
-        print( "neighbourhood data loading failed, check the url")
+        print( "neighbourhood data loading failed")
+
+
+## import neighbourhood label data
+
+def import_neighbourhood_label_data ():
+    """imports the neighbourhood label data as a geodataframe from the city of zürich"""
+    url_neighbourhood_labels = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_B_P"
+    try:
+        neighbourhood_labels_gdf = gpd.read_file(url_neighbourhood_labels).set_crs(epsg="4326").to_crs(epsg="2056")
+        print("neighbourhood label data loaded sugessfull")
+        return neighbourhood_labels_gdf
+    except:
+        print( "neighbourhood label data loading failed, c$heck the url")
 
 
 
