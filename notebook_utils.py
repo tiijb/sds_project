@@ -10,14 +10,14 @@ import pandas as pd
 ## import züri wie neu data
 
 def import_zwn_data():
-    """imports the züri wie neu data as a geodataframe from the website of the city zurich"""
+    """imports the 'Züri wie neu' data as a geodataframe from the website of the city zurich"""
     url_zwn = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
     try:
         zwn_gdf = gpd.read_file(url_zwn).set_crs(epsg="4326").to_crs(epsg="2056")
-        print("Data züri wie neu loaded sugessfull")
+        print("'Züri wie neu' data loaded sugessfully")
         return zwn_gdf
     except:
-        print( "Züri wie neu data loading failed, check the url")
+        print( "'Züri wie neu' data loading failed")
 
 
 
@@ -29,7 +29,7 @@ def import_neighbourhood_data ():
     url_neighbourhoods = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_v"
     try:
         neighbourhood_gdf = gpd.read_file(url_neighbourhoods).set_crs(epsg="4326").to_crs(epsg="2056")
-        print("neighbourhood data loaded sugessfull")
+        print("neighbourhood data loaded sugessfully")
         return neighbourhood_gdf
     except:
         print( "neighbourhood data loading failed")
@@ -39,13 +39,13 @@ def import_neighbourhood_data ():
 
 def import_neighbourhood_label_data ():
     """imports the neighbourhood label data as a geodataframe from the city of zürich"""
-    url_neighbourhood_labels = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_B_P"
+    url_neighbourhood_labels = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Statistische_Quartiere?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_statistische_quartiere_b_p"
     try:
         neighbourhood_labels_gdf = gpd.read_file(url_neighbourhood_labels).set_crs(epsg="4326").to_crs(epsg="2056")
-        print("neighbourhood label data loaded sugessfull")
+        print("neighbourhood label data loaded sugessfully")
         return neighbourhood_labels_gdf
     except:
-        print( "neighbourhood label data loading failed, c$heck the url")
+        print( "neighbourhood label data loading failed")
 
 
 
@@ -56,7 +56,7 @@ def import_gastronomy_data ():
     url_gastronomy = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gastwirtschaftsbetriebe?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=gastwirtschaftsbetriebe"
     try:
         gastronomy_gdf = gpd.read_file(url_gastronomy).set_crs(epsg="4326").to_crs(epsg="2056")
-        print("gastronomy data loaded sugessfull")
+        print("gastronomy data loaded sugessfully")
         return gastronomy_gdf
     except:
         print("gastronomy data loading failed")
@@ -71,7 +71,7 @@ def import_population_data():
     parameter_population = {"resource_id":"9f9e2f24-96a7-4542-843c-52d44a904110", "limit":10000}
     response_population = requests.get(url_population, params=parameter_population)
     if response_population.status_code == 200:
-        print("Data Population loaded sugessfull")
+        print("population data loaded sugessfully")
 
         #convert the json response into a dictionary (because the CKAN API returns a new dictionary where the data is in result and record)
         population_dic = response_population.json()["result"]["records"]
@@ -79,7 +79,7 @@ def import_population_data():
         population_df = pd.DataFrame(population_dic)
         return population_df
     else:
-        print("Data population loading failed")
+        print("population data loading failed")
 
 
 
@@ -90,7 +90,7 @@ def import_income_data():
     parameter_income = {"resource_id":"af01ed91-04f8-445b-8dfc-04cbf0a27e95", "limit":3000}
     response_income = requests.get(url_income, params=parameter_income)
     if response_income.status_code == 200:
-        print("Data Income loaded sugessfull")
+        print("income data loaded sugessfully")
 
         #convert the json response into a dictionary (because the CKAN API returns a new dictionary where the data is in result and record)
         income_dic = response_income.json()["result"]["records"]
@@ -98,4 +98,4 @@ def import_income_data():
         income_df = pd.DataFrame(income_dic)
         return income_df
     else:
-        print("Data income loading failed")
+        print("income data loading failed")
