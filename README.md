@@ -1,7 +1,7 @@
 # Züri wie neu — Waste & Littering Analysis
 
-**Author:** Tim Berger  
-**Date:** May 2026
+Author: Tim Berger  
+Date: 22.5.2026
 
 ## Description
 
@@ -31,9 +31,9 @@ The external packages which are required to run the notebooks are all inside the
 
 To recreate the environment:
 1. Ensure you have Conda installed.
-2. Navigate to the extracted sds210_project folder: `cd <path-to-sds210-repository-folder>`
+2. Navigate to the extracted sds210_project folder: `cd <path-to-sds210-project-folder>`
 2. Then run: `conda env create -f environment.yml`
-3. Activate: `conda activate zurich-heat-env`
+3. Activate: `conda activate sds210`
 
 ## Execution Order
 
