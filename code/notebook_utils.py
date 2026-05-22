@@ -1,23 +1,24 @@
-## This File contains all the functions for loading the data of the züri wie neu project
+## This File contains the functions for loading the data of the sds210 project
 
+# import required packages
 import requests
 import geopandas as gpd
 import pandas as pd
 
 
-### import geografic data function
+### function to import geografic data 
 
 url_zwn = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
 def import_geografic_data(url):
     """loads the geographic data as a geodataframe
     
     This function loads the geografic data from a given url into a geodataframe and converts it the LV95 coordinates
-    if it is successfull it prints 'data loaded successfully' and returns the data,
+    if it is successfull, it prints 'data loaded successfully' and returns the data,
     otherwise it prints 'data loading failed'
     
     parameters
     ------------
-    url: a url to a geografic data file that is compatible with gpd.read_file()
+    URL: a URL to a geografic data file that is compatible with gpd.read_file()
     
     outputs
     ------------
@@ -33,7 +34,7 @@ def import_geografic_data(url):
 
 
 
-# import data function
+# function to import non geografic data 
 
 def import_data(url):
     """imports the data as a dataframe from the given CKAN API URL
@@ -44,7 +45,7 @@ def import_data(url):
     
     parameters
     ------------
-    url: a CKAN API URL to a data file
+    URL: a CKAN API URL to a data file
     
     outputs
     ------------
