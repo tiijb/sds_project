@@ -5,7 +5,8 @@ import geopandas as gpd
 import pandas as pd
 
 
-### import data
+### import geografic data function
+
 url_zwn = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p"
 def import_geografic_data(url):
     """loads the geographic data as a geodataframe
@@ -32,6 +33,8 @@ def import_geografic_data(url):
 
 
 
+# import data function
+
 def import_data(url):
     """imports the data as a dataframe from the given CKAN API URL
     
@@ -50,7 +53,7 @@ def import_data(url):
 
     response_population = requests.get(url)
     if response_population.status_code == 200:
-        print("data loaded sugessfully")
+        print("data loaded successfully")
 
         #convert the json response into a dictionary (because the CKAN API returns a new dictionary where the data is in result and record)
         population_dic = response_population.json()["result"]["records"]
