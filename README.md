@@ -10,3 +10,10 @@ This project analysis the spatial distribution of reports in Züri wie neu, a we
 
 ## Data Sources
 
+All data is loaded directly from the website of the city of Zürich by calling the respective function in the notebook_utils file.  
+The functions take the following WFS-URL (geodata) or CKAN API URL (non geografic data).
+Under the source link the describtion, attributes and general information about the dataset can be found
+
+| Dataset | Source | URL |
+|---|---|---|
+|Züri wie neu|https://data.stadt-zuerich.ch/dataset/geo_zueri_wie_neu|https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Zueri_wie_neu?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=zwn_meldungen_p|
